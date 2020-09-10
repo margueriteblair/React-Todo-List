@@ -21,7 +21,7 @@ function App() {
   function toggleTodo(id) {
     const newTodos = [...todos] //creating a copy, we don't want to mod the state variable
     const todo = newTodos.find(todo => todo.id === id);
-    todo.complete != todo.complete
+    todo.complete = !todo.complete //assign todo.complete status to just be the opposite
     setTodos(newTodos);
   }
 
