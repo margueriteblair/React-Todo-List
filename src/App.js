@@ -33,6 +33,10 @@ function App() {
     })
     todoNameRef.current.value = null
   }
+  function handleClearTodos() {
+    const newTodos = todos.filter(todo => !todo.complete)
+    setTodos(newTodos)
+  }
   return (
   <>
    <TodoList todos={todos} toggleTodo = {toggleTodo}/>
