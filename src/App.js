@@ -8,8 +8,22 @@ function App() {
   const localStorageKey = 'todoApp.todos'
 
   useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem(localStorageKey))
+    if (storedTodos) setTodos(storedTodos)
+  }, [])
+
+  useEffect(() => {
     localStorage.setItem(localStorageKey, JSON.stringify(todos))
   }, [todos])
+
+
+  //use effect is used to actually save data
+  function toggleTodo(id) {
+    const newTodos = [...todos] //creating a copy, we don't want to mod the state variable
+    const todo = newTodos.find(todo => todo.id === id);
+    todo.complete != todo.complete
+    setTodos(newTodos);
+  }
 
   function handleAddTodo(e) {
     const name = todoNameRef.current.value
