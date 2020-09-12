@@ -2,10 +2,11 @@ import React, { useState, useRef, useEffect } from 'react';
 import TodoList from './TodoList'
 import uuidv4 from "uuid/v4"
 
+const localStorageKey = 'todoApp.todos'
+
 function App() {
   const [todos, setTodos] = useState([])
   const todoNameRef = useRef();
-  const localStorageKey = 'todoApp.todos'
 
   useEffect(() => {
     const storedTodos = JSON.parse(localStorage.getItem(localStorageKey))
@@ -42,7 +43,7 @@ function App() {
    <TodoList todos={todos} toggleTodo = {toggleTodo}/>
    <input type="text"/>
    <button onClick={handleAddTodo}>Add Todo</button>
-   <button >Clear Completed Todos</button>
+   <button onClick={handleClearTodos}>Clear Completed Todos</button>
   <div>Remaining Todos: {todos.filter(todo => !todo.complete).length}</div>
   </>
   )
