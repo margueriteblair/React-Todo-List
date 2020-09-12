@@ -1,29 +1,27 @@
 import React, { useState, useRef, useEffect } from 'react';
 import TodoList from './TodoList'
-import uuidv4 from "uuid/v4"
+import uuidv4 from 'uuid/v4'
 
-const localStorageKey = 'todoApp.todos'
+const LOCAL_STORAGE_KEY = 'todoApp.todos'
 
 function App() {
   const [todos, setTodos] = useState([])
-  const todoNameRef = useRef();
+  const todoNameRef = useRef()
 
   useEffect(() => {
-    const storedTodos = JSON.parse(localStorage.getItem(localStorageKey))
+    const storedTodos = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY))
     if (storedTodos) setTodos(storedTodos)
   }, [])
 
   useEffect(() => {
-    localStorage.setItem(localStorageKey, JSON.stringify(todos))
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(todos))
   }, [todos])
 
-
-  //use effect is used to actually save data
   function toggleTodo(id) {
-    const newTodos = [...todos] //creating a copy, we don't want to mod the state variable
-    const todo = newTodos.find(todo => todo.id === id);
-    todo.complete = !todo.complete //assign todo.complete status to just be the opposite
-    setTodos(newTodos);
+    const newTodos = [...todos]
+    const todo = newTodos.find(todo => todo.id === id)
+    todo.complete = !todo.complete
+    setTodos(newTodos)
   }
 
   function handleAddTodo(e) {
@@ -34,18 +32,20 @@ function App() {
     })
     todoNameRef.current.value = null
   }
+
   function handleClearTodos() {
     const newTodos = todos.filter(todo => !todo.complete)
     setTodos(newTodos)
   }
+
   return (
-  <>
-   <TodoList todos={todos} toggleTodo = {toggleTodo}/>
-   <input type="text"/>
-   <button onClick={handleAddTodo}>Add Todo</button>
-   <button onClick={handleClearTodos}>Clear Completed Todos</button>
-  <div>Remaining Todos: {todos.filter(todo => !todo.complete).length}</div>
-  </>
+    <>
+      <TodoList todos={todos} toggleTodo={toggleTodo} />
+      <input ref={todoNameRef} type="text" />
+      <button onClick={handleAddTodo}>Add Todo</button>
+      <button onClick={handleClearTodos}>Clear Complete</button>
+      <div>{todos.filter(todo => !todo.complete).length} left to do</div>
+    </>
   )
 }
 
