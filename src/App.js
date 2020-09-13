@@ -38,14 +38,17 @@ function App() {
     setTodos(newTodos)
   }
 
+  const today = new Date()
+
   return (
-    <>
-      <TodoList style={{textAlign: "center"}} todos={todos} toggleTodo={toggleTodo} />
+    <div style={{textAlign: "center"}}>
+      <h1>Margie's {today.getDate()} Todo List:</h1>
+      <TodoList todos={todos} toggleTodo={toggleTodo} />
       <input ref={todoNameRef} type="text" />
       <button onClick={handleAddTodo}>Add Todo</button>
       <button onClick={handleClearTodos}>Clear Complete</button>
       <div style={{color: "red"}}>{todos.filter(todo => !todo.complete).length} tasks left to do.</div>
-    </>
+    </div>
   )
 }
 
