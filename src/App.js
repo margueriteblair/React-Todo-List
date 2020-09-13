@@ -42,12 +42,12 @@ function App() {
 
   return (
     <div style={{textAlign: "center"}}>
-      <h1>Margie's {`${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`} Todo List:</h1>
+      <h1 style={{fontFamily: "Arial"}}>Margie's {`${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`} Todo List:</h1>
       <TodoList todos={todos} toggleTodo={toggleTodo} />
       <input ref={todoNameRef} type="text" />
       <button onClick={handleAddTodo}>Add Todo</button>
       <button onClick={handleClearTodos}>Clear Complete</button>
-      <div style={{color: "red"}}>{todos.filter(todo => !todo.complete).length} tasks left to do.</div>
+      <div style={{color: "red", marginTop: 25, fontFamily: "Arial"}}>{todos.filter(todo => !todo.complete).length} tasks left to do.</div>
     </div>
   )
 }
