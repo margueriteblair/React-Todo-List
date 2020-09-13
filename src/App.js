@@ -42,7 +42,7 @@ function App() {
 
   return (
     <div style={{textAlign: "center"}}>
-      <h1>Margie's {today.getDate()} Todo List:</h1>
+      <h1>Margie's {`${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`} Todo List:</h1>
       <TodoList todos={todos} toggleTodo={toggleTodo} />
       <input ref={todoNameRef} type="text" />
       <button onClick={handleAddTodo}>Add Todo</button>
