@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
+//all of the above in the deconstructed object are React hooks
 import TodoList from './TodoList'
 import uuidv4 from 'uuid/v4'
 
 const LOCAL_STORAGE_KEY = 'todoApp.todos'
-
+//local storage defined so that the todos don't just go away after we leave the page
 function App() {
   const [todos, setTodos] = useState([])
   const todoNameRef = useRef()
