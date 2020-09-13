@@ -40,11 +40,11 @@ function App() {
 
   return (
     <>
-      <TodoList todos={todos} toggleTodo={toggleTodo} />
+      <TodoList style={{textAlign: "center"}} todos={todos} toggleTodo={toggleTodo} />
       <input ref={todoNameRef} type="text" />
       <button onClick={handleAddTodo}>Add Todo</button>
       <button onClick={handleClearTodos}>Clear Complete</button>
-      <div>{todos.filter(todo => !todo.complete).length} left to do</div>
+      <div style={{color: "red"}}>{todos.filter(todo => !todo.complete).length} tasks left to do.</div>
     </>
   )
 }
